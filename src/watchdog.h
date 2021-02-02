@@ -5,6 +5,15 @@ int main();
 
 namespace core {
     void estop();
+
+    enum modes {
+        FULL_DRIVE,
+        ONLY_STEERING,
+        MANUAL,
+        ESTOP
+    };
+
+    int current_mode;
 }
 
 #endif

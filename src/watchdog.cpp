@@ -7,21 +7,10 @@
 
 // I moved some stuff into a new "core" namespace
 namespace core {
-
-    enum modes {
-        FULL_DRIVE,
-        ONLY_STEERING,
-        MANUAL,
-        ESTOP
-    };
-
-    int current_mode;
-
     void estop() {
         current_mode = modes::ESTOP;
         printf("ESTOP! %d\n", current_mode);
     }
-    
 }
 
 int main() {
