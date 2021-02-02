@@ -1,10 +1,13 @@
+CXX = g++
+
+src = $(wildcard ./src/*.cpp)
+obj = $(src:.cpp=.o)
+
 all: clean watchdog
 
-watchdog: test_estop.o
-	g++ src/watchdog.cpp -o watchdog $<
-
-test_estop.o:
-	g++ -c src/test_estop.cpp
+watchdog: $(obj)
+	$(CXX) -pthread -o $@ $^
+	$(RM) $(obj)
 
 clean:
-	$(RM) watchdog test_estop.o
+	$(RM) $(obj) watchdog
