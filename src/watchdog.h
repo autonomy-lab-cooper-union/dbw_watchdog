@@ -2,6 +2,9 @@
 #define WATCHDOG_H
 
 int main();
-void estop();
+
+namespace core {
+    void estop();
+}
 
 #endif
