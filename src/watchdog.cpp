@@ -7,6 +7,7 @@
 
 // I moved some stuff into a new "core" namespace
 namespace core {
+    int current_mode = modes::FULL_DRIVE;
     void estop() {
         current_mode = modes::ESTOP;
         printf("ESTOP! %d\n", current_mode);

@@ -13,7 +13,7 @@ namespace core {
         ESTOP
     };
 
-    int current_mode;
+    extern int current_mode;
 }
 
 #endif
