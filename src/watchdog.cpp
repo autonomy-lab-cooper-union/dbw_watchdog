@@ -48,10 +48,10 @@ int main()
         usleep(100 * 1000);
 
         for(int i=0; i< NUM_THREADS; ++i){
-            printf("buffer: index %d, Buffer Value: %d, Status Value: %d\n", i, buffer[i], core::status[i].load());
+            printf("buffer: thread %d, Buffer Value: %d, Status Value: %d\n", i, buffer[i], core::status[i].load());
             if (buffer[i] == core::status[i].load())
                  {
-                    printf("Stopped due to index %d\n", i);
+                    printf("Stopped due to thread %d\n", i);
                     leave = 1;
                     break;
                  }
