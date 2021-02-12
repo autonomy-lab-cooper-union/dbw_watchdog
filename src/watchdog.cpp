@@ -40,28 +40,22 @@ int main()
     
     for (;;) 
     {   
-        for(int i=0; i< NUM_THREADS; ++i){
+        for(int i=0; i < NUM_THREADS; ++i) {
             buffer[i] = core::status[i].load();
             //printf("buffer: index %d, Value: %d\n", i, buffer[i]);
         }
 
         usleep(100 * 1000);
 
-        for(int i=0; i< NUM_THREADS; ++i){
+        for(int i=0; i < NUM_THREADS; ++i) {
             printf("buffer: thread %d, Buffer Value: %d, Status Value: %d\n", i, buffer[i], core::status[i].load());
-            if (buffer[i] == core::status[i].load())
-                 {
-                    printf("Stopped due to thread %d\n", i);
-                    leave = 1;
-                    break;
-                 }
+            if (buffer[i] == core::status[i].load()) {
+                printf("Stopped due to thread %d\n", i);
+                goto exit;
+            }
         }
-        if(leave == 1){
-            break;
-        }
-        
     }
+exit:
     // when the program exits, ALL the threads die too
     exit(0);
-
 }
