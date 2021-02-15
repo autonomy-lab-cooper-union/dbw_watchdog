@@ -2,6 +2,9 @@
 #include <unistd.h>
 #include "watchdog.h"
 #include "sample_task1.h"
+
+#define THIS_THREAD 1
+
 void sample_task1()
 {
 
