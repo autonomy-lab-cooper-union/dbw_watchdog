@@ -22,6 +22,14 @@ namespace core
     }
 }
 
+void (*modules[])()
+{
+    sample_task,
+    sample_task1,
+    sample_task2,
+    sample_task3
+};
+
 int main() 
 {
     std::vector<std::thread> threads;
@@ -29,10 +37,9 @@ int main()
     //printf("the current driving mode is %d\n", core::current_mode.load());
     //std::thread mod_test_estop (test_estop);
     //std::thread mod_sample_task (sample_task);
-    threads.push_back(std::thread(sample_task));
-    threads.push_back(std::thread(sample_task1));
-    threads.push_back(std::thread(sample_task2));  
-    threads.push_back(std::thread(sample_task3));  
+    for (auto& task : modules) {
+        threads.push_back(std::thread(task));
+    }
     //printf("the current driving mode is %d\n", core::current_mode.load());
 
     int buffer[NUM_THREADS] = {0};
