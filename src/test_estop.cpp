@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
-#include "watchdog.h"
+#include "core.h"
 
 using namespace core;
 

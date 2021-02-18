@@ -3,24 +3,13 @@
 #include <unistd.h>
 #include <vector>
 #include "watchdog.h"
+#include "core.h"
 #include "test_estop.h"
 #include "sample_task.h"
 #include "sample_task1.h"
 #include "sample_task2.h"
 #include "sample_task3.h"
 #include <atomic>
-
-// I moved some stuff into a new "core" namespace
-namespace core 
-{
-    std::array<std::atomic_int, NUM_THREADS> status;
-    std::atomic_int current_mode (modes::FULL_DRIVE);
-    void estop() 
-    {
-        current_mode = modes::ESTOP;
-        printf("ESTOP! %d\n", current_mode.load());
-    }
-}
 
 void (*modules[])()
 {
@@ -55,7 +44,7 @@ int main()
         usleep(100 * 1000);
 
         for(int i=0; i < NUM_THREADS; ++i) {
-            printf("buffer: thread %d, Buffer Value: %d, Status Value: %d\n", i, buffer[i], core::status[i].load());
+            printf("buffer: thread %d, Buffer Value: %d, Status Value: %ld\n", i, buffer[i], core::status[i].load());
             if (buffer[i] == core::status[i].load()) {
                 printf("Stopped due to thread %d\n", i);
                 goto exit;

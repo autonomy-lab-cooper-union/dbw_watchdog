@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
-#include "watchdog.h"
+#include "core.h"
 #include "sample_task3.h"
 
 #define THIS_THREAD 3

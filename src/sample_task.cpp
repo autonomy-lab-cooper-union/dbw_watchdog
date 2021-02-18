@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <unistd.h>
-#include "watchdog.h"
+#include "core.h"
 #include "sample_task.h"
+
+// impl. functions in core to kick watchdog
 
 #define THIS_THREAD 0
 
