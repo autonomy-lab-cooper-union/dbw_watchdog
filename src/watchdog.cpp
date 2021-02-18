@@ -6,17 +6,11 @@
 #include "core.h"
 #include "test_estop.h"
 #include "sample_task.h"
-#include "sample_task1.h"
-#include "sample_task2.h"
-#include "sample_task3.h"
 #include <atomic>
 
 void (*modules[])()
 {
-    sample_task,
-    sample_task1,
-    sample_task2,
-    sample_task3
+    sample_task
 };
 
 int main() 
