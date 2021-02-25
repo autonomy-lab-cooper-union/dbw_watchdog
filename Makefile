@@ -6,7 +6,7 @@ obj = $(src:.cpp=.o)
 all: clean watchdog
 
 watchdog: $(obj)
-	$(CXX) -pthread -o $@ $^
+	$(CXX) -pthread -o $@ $^ -latomic
 	$(RM) $(obj)
 
 clean:
