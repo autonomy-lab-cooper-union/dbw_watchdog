@@ -39,7 +39,7 @@ namespace core
     int _LOGMSG_len = (int)strlen(#TASK);\
     int _LOGMSG_adj = (16-_LOGMSG_len)%2 ? 0 : 1;\
     fprintf(stderr, "%s[ %*c%s%*c ]\t" COLOR_NORMAL msg "\n", \
-        (angry ? COLOR_RED : COLOR_GREEN), \
+	(angry == 0) ? COLOR_GREEN : ((angry == 1) ? COLOR_RED : COLOR_CYAN), \
         (16-_LOGMSG_len)/2, ' ', #TASK, \
         (16-_LOGMSG_len)/2 - _LOGMSG_adj, ' '\
         __VA_OPT__(,) __VA_ARGS__);\

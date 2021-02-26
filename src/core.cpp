@@ -12,7 +12,7 @@ namespace core
     void estop()
     {
         current_mode = modes::ESTOP;
-        LOGMSG(core, 1, "ESTOP TRIGGERED! Previous mode: %d", current_mode.load());
+        LOGMSG(core, 2, "ESTOP TRIGGERED! Previous mode: %d", current_mode.load());
         LOGMSG(core, 1, "-> Now exiting after estop");
         exit(99);
     }
