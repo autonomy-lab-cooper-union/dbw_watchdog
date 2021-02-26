@@ -5,9 +5,7 @@
 
 // impl. functions in core to kick watchdog
 
-#define THIS_THREAD 0
-
-void sample_task()
+void sample_task(const int THIS_THREAD)
 {
 
     int count = 0;

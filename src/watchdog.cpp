@@ -10,7 +10,7 @@
 
 #define NAME_OF( v ) #v
 
-std::array<void(*)(), 1> modules
+std::array<void(*)(const int), 1> modules
 {
     sample_task
 };
@@ -23,8 +23,8 @@ int main()
     //printf("the current driving mode is %d\n", core::current_mode.load());
     //std::thread mod_test_estop (test_estop);
     //std::thread mod_sample_task (sample_task);
-    for (auto& task : modules) {
-        threads.push_back(std::thread(task));
+    for (int t = 0; t<modules.size(); t++) {
+        threads.push_back(std::thread(modules.at(t), t));
     }
     //printf("the current driving mode is %d\n", core::current_mode.load());
 
