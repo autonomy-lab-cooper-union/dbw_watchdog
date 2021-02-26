@@ -23,7 +23,7 @@ void mod_canhealth(const int THIS_THREAD)
                 fprintf(stderr, "Error in ioctl! Error %d: %s\n", r, strerror(r));
                 return;
         }
-        printf("interface is up: %d\n", (ifr.ifr_flags & IFF_UP));
+        // printf("interface is up: %d\n", (ifr.ifr_flags & IFF_UP));
 
         core::status[THIS_THREAD]++;
         usleep(1000);
