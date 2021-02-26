@@ -13,7 +13,7 @@ void (*modules[])()
     sample_task
 };
 
-int main() 
+int main()
 {
     std::vector<std::thread> threads;
     core::current_mode.store(core::modes::FULL_DRIVE);
@@ -27,9 +27,9 @@ int main()
 
     int buffer[NUM_THREADS] = {0};
     int leave = 0;
-    
-    for (;;) 
-    {   
+
+    for (;;)
+    {
         for(int i=0; i < NUM_THREADS; ++i) {
             buffer[i] = core::status[i].load();
             //printf("buffer: index %d, Value: %d\n", i, buffer[i]);

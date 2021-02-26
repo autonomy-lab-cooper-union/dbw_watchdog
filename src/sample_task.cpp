@@ -11,13 +11,13 @@ void sample_task()
 {
 
     int count = 0;
-    for (;;) 
+    for (;;)
     {
         core::status[THIS_THREAD]++;
          //printf("status %d\n", core::status[0].load());
-        
+
         /* BLACK BOX */
-        if (count >= 25) 
+        if (count >= 25)
         {
             break;
         }
