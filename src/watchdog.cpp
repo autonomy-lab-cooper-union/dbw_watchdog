@@ -50,7 +50,7 @@ int main()
     {
         if (sigcaught) { // use of many functions (like fprintf) is limited inside signal handlers, so do it here
             putchar('\n');
-            LOGMSG(watchdog, 1, "!!! Caught SIGINT, will exit on next occurence!");
+            LOGMSG(watchdog, 2, "!!! Caught SIGINT, will exit on next occurence!");
             sigcaught = 0;
         }
 
