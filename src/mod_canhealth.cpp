@@ -10,23 +10,25 @@
 
 void mod_canhealth(const int THIS_THREAD)
 {
+    LOGMSG(mod_canhealth, 0, "initializing...");
     int count = 0;
     // set up stuff for ioctl
     struct ifreq ifr;
     strncpy(ifr.ifr_name, "can0", IFNAMSIZ);
     ifr.ifr_flags = IFF_UP|IFF_RUNNING|IFF_NOARP;
     int fd = socket(AF_UNIX, SOCK_DGRAM, 0);
-
+    LOGMSG(mod_canhealth, 0, "initialized; running");
     for (;;)
     {
         if (int r = ioctl(fd, SIOCGIFFLAGS, &ifr) < 0) {
-                fprintf(stderr, "[mod_canhealth]:\tError in ioctl! Error %d: %s\n", r, strerror(r));
+                LOGMSG(mod_canhealth, 1, "Error in ioctl! Error %d: %s", r, strerror(r));
+                //fprintf(stderr, MSGSTART(mod_canhealth, 1) "Error in ioctl! Error %d: %s\n", r, strerror(r));
                 return;
         }
         // printf("interface is up: %d\n", (ifr.ifr_flags & IFF_UP));
 
         if (!(ifr.ifr_flags & IFF_UP)) {
-            fprintf(stderr, "[mod_canhealth]:\t CAN UNHEALTHY, calling estop()\n");
+            LOGMSG(mod_canhealth, 1, "CAN UNHEALTHY, calling estop()");
             core::estop();
         }
         core::status[THIS_THREAD]++;
