@@ -32,6 +32,5 @@ void mod_canhealth(const int THIS_THREAD)
         core::status[THIS_THREAD]++;
         usleep(1000);
         count++;
-        /* END BLACK BOX */
     }
 }
