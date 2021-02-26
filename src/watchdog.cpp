@@ -65,7 +65,7 @@ int main()
             // printf("buffer: thread %d, Buffer Value: %d, Status Value: %ld\n", i, buffer[i], core::status[i].load());
             if (buffer[i] == core::status[i].load()) {
                 LOGMSG(watchdog, 1, "Stopped due to dead thread: #%d", i);
-                exit_now();
+                core::estop();
             }
         }
     }
