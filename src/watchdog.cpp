@@ -5,14 +5,14 @@
 #include "watchdog.h"
 #include "core.h"
 #include "test_estop.h"
-#include "sample_task.h"
+#include "mod_canhealth.h"
 #include <atomic>
 
 #define NAME_OF( v ) #v
 
 std::array<void(*)(const int), 1> modules
 {
-    sample_task
+    mod_canhealth
 };
 
 int main()

@@ -12,6 +12,7 @@ namespace core
     void estop()
     {
         current_mode = modes::ESTOP;
-        printf("ESTOP! %d\n", current_mode.load());
+        printf("ESTOP TRIGGERED! %d\n", current_mode.load());
+        exit(99);
     }
 }
