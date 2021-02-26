@@ -8,13 +8,16 @@
 #include "sample_task.h"
 #include <atomic>
 
-void (*modules[])()
+#define NAME_OF( v ) #v
+
+std::array<void(*)(), 1> modules
 {
     sample_task
 };
 
 int main()
 {
+    printf("Number of modules: %lu\n", modules.size());
     std::vector<std::thread> threads;
     core::current_mode.store(core::modes::FULL_DRIVE);
     //printf("the current driving mode is %d\n", core::current_mode.load());
@@ -25,19 +28,19 @@ int main()
     }
     //printf("the current driving mode is %d\n", core::current_mode.load());
 
-    int buffer[NUM_THREADS] = {0};
+    int buffer[modules.size()] = {0};
     int leave = 0;
 
     for (;;)
     {
-        for(int i=0; i < NUM_THREADS; ++i) {
+        for(int i=0; i < modules.size(); ++i) {
             buffer[i] = core::status[i].load();
             //printf("buffer: index %d, Value: %d\n", i, buffer[i]);
         }
 
         usleep(100 * 1000);
 
-        for(int i=0; i < NUM_THREADS; ++i) {
+        for(int i=0; i < modules.size(); ++i) {
             printf("buffer: thread %d, Buffer Value: %d, Status Value: %ld\n", i, buffer[i], core::status[i].load());
             if (buffer[i] == core::status[i].load()) {
                 printf("Stopped due to thread %d\n", i);
