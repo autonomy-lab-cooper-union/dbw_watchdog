@@ -20,11 +20,15 @@ void mod_canhealth(const int THIS_THREAD)
     for (;;)
     {
         if (int r = ioctl(fd, SIOCGIFFLAGS, &ifr) < 0) {
-                fprintf(stderr, "Error in ioctl! Error %d: %s\n", r, strerror(r));
+                fprintf(stderr, "[mod_canhealth]:\tError in ioctl! Error %d: %s\n", r, strerror(r));
                 return;
         }
         // printf("interface is up: %d\n", (ifr.ifr_flags & IFF_UP));
 
+        if (!(ifr.ifr_flags & IFF_UP)) {
+            fprintf(stderr, "[mod_canhealth]:\t CAN UNHEALTHY, calling estop()");
+            core::estop();
+        }
         core::status[THIS_THREAD]++;
         usleep(1000);
         count++;
