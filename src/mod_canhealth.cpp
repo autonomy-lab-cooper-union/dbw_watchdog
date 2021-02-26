@@ -26,7 +26,7 @@ void mod_canhealth(const int THIS_THREAD)
         // printf("interface is up: %d\n", (ifr.ifr_flags & IFF_UP));
 
         if (!(ifr.ifr_flags & IFF_UP)) {
-            fprintf(stderr, "[mod_canhealth]:\t CAN UNHEALTHY, calling estop()");
+            fprintf(stderr, "[mod_canhealth]:\t CAN UNHEALTHY, calling estop()\n");
             core::estop();
         }
         core::status[THIS_THREAD]++;
