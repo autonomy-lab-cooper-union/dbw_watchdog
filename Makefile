@@ -3,7 +3,7 @@ CXX = g++
 src = $(wildcard ./src/*.cpp)
 src += $(wildcard ./src/*.c)
 obj = $(src:.cpp=.o)
-obj += $(src:.c=.o_
+obj += $(src:.c=.o)
 
 all: clean watchdog
 
