@@ -1,10 +1,9 @@
 CXX = g++
 
 src = $(wildcard ./src/*.cpp)
-src += $(wildcard ./src/*.c)
+src += libsocketcan.c
 obj = $(src:.cpp=.o)
-obj += $(src:.c=.o)
-
+obj += libsocketcan.o
 all: clean watchdog
 
 watchdog: $(obj)
