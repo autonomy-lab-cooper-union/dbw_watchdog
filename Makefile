@@ -1,13 +1,11 @@
 CXX = g++
 
 src = $(wildcard ./src/*.cpp)
-src += libsocketcan.c
 obj = $(src:.cpp=.o)
-obj += libsocketcan.o
 all: clean watchdog
 
 watchdog: $(obj)
-	$(CXX) -pthread -o $@ $^ -latomic
+	$(CXX) -pthread -o $@ $^ /mnt/c/users/aligh/Desktop/hacker/IGVC/dbw_watchdog/src/libsocketcan/src/libsocketcan.o -latomic 
 	$(RM) $(obj)
 
 clean:
