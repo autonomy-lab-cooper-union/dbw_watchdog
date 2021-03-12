@@ -11,6 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: install libsocketcan
-      run: sudo ./install-libsocketcan.sh
+      run: sudo ./tools/install-libsocketcan.sh
     - name: make
       run: make
