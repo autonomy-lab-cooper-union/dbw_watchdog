@@ -13,6 +13,7 @@ jobs:
     - name: install libsocketcan
       run: |
         cd tools
+	ls -la
         sudo ./install-libsocketcan.sh
     - name: make
       run: make
