@@ -10,11 +10,9 @@
 void mod_canhealth_lsc(const int THIS_THREAD)
 {
     int canState;
-    int count = 0;
     LOGMSG(mod_canhealth, 0, "Running");
     for (;;)
     {
-        
         if (can_get_state("can0", &canState) < 0) {
             LOGMSG(mod_canhealth, 1, "Error getting CAN state!");
             core::estop();
@@ -24,6 +22,5 @@ void mod_canhealth_lsc(const int THIS_THREAD)
         }
         core::status[THIS_THREAD]++;
         usleep(1000);
-        count++;
     }
 }

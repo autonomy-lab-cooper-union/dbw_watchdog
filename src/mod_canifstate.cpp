@@ -11,7 +11,6 @@
 void mod_canifstate(const int THIS_THREAD)
 {
     LOGMSG(mod_canifstate, 0, "initializing...");
-    int count = 0;
     // set up stuff for ioctl
     struct ifreq ifr;
     strncpy(ifr.ifr_name, "can0", IFNAMSIZ);
@@ -33,6 +32,5 @@ void mod_canifstate(const int THIS_THREAD)
         }
         core::status[THIS_THREAD]++;
         usleep(1000);
-        count++;
     }
 }
