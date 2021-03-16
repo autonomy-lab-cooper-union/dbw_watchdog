@@ -62,16 +62,14 @@ void checkMessage() {
     if (rx_frame.MsgID > canmsg_ID::ESTOP_RANGE_START && rx_frame.MsgID < canmsg_ID::ESTOP_RANGE_END){
       sendToTask(canToEStop);
     }
-    else if(rx_frame.MsgID > canmsg_ID::HOUSE_RANGE_START && rx_frame.MsgID < canmsg_ID::HOUSE_RANGE_END){
-      sendToTask(canToHouse);
+    else if(rx_frame.MsgID > canmsg_ID::FULL_DRIVE_START && rx_frame.MsgID < canmsg_ID::FULL_DRIVE_END){
+      sendToTask(canToFullDrive);
     }
-    else if(rx_frame.MsgID >  canmsg_ID::WATCH_RANGE_START && rx_frame.MsgID < canmsg_ID::WATCH_RANGE_END){
-      sendToTask(canToWatch);
+    else if(rx_frame.MsgID >  canmsg_ID::ONLY_STEERING_START && rx_frame.MsgID < canmsg_ID::ONLY_STEERING_END){
+      //sendToTask(canToSteering);
     }
-    else if(rx_frame.MsgID >  SPRANGE_START && rx_frame.MsgID < SPRANGE_END){
-      // not implemented yet
-      // sendToTask(canToSpMsg);
-      fprintf(stderr, "triggered special range!\n");
+    else if(rx_frame.MsgID >  MANUAL_START && rx_frame.MsgID < MANUAL_END){
+      //sendToTask(canToManual);
     }
     printf("New %s frame", (rx_frame.FIR.B.FF==CAN_frame_std ? "standard" : "extended"));
     if(rx_frame.FIR.B.RTR==CAN_RTR) printf(" RTR");
