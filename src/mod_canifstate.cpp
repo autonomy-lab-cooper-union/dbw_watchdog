@@ -26,7 +26,9 @@ void mod_canifstate(const int THIS_THREAD)
         // printf("interface is up: %d\n", (ifr.ifr_flags & IFF_UP));
 
         if (!(ifr.ifr_flags & IFF_UP)) {
-            LOGMSG(mod_canifstate, 1, "CAN UNHEALTHY, calling estop()");
+            // Dan: We could try to restart the interface, but I question the wisdom of that,
+            //      given that we probably missed messages while it was down.
+            LOGMSG(mod_canifstate, 1, "CAN INTERFACE APPEARS DOWN, calling estop()");
             core::estop();
         }
         core::status[THIS_THREAD]++;
