@@ -20,9 +20,8 @@ void mod_canifstate(const int THIS_THREAD)
     for (;;)
     {
         if (int r = ioctl(fd, SIOCGIFFLAGS, &ifr) < 0) {
-                LOGMSG(mod_canifstate, 1, "Error in ioctl! Error %d: %s", r, strerror(r));
-                //fprintf(stderr, MSGSTART(mod_canifstate, 1) "Error in ioctl! Error %d: %s\n", r, strerror(r));
-                return;
+                LOGMSG(mod_canifstate, 1, "Error in ioctl! Calling estop(): Error %d: %s", r, strerror(r));
+                core::estop();
         }
         // printf("interface is up: %d\n", (ifr.ifr_flags & IFF_UP));
 

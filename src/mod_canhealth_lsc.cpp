@@ -18,7 +18,8 @@ void mod_canhealth_lsc(const int THIS_THREAD)
             core::estop();
         }
         if (canState != CAN_STATE_ERROR_ACTIVE) {
-             LOGMSG(mod_canhealth, 1, "CAN UNHEALTHY, calling estop()");
+            LOGMSG(mod_canhealth, 1, "CAN UNHEALTHY, calling estop()");
+            core::estop();
         }
         core::status[THIS_THREAD]++;
         usleep(1000);
