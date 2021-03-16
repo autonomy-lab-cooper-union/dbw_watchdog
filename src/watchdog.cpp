@@ -6,7 +6,7 @@
 #include "core.h"
 #include "test_estop.h"
 #include "mod_canifstate.h"
-#include "mod_canhealth_lsc.h"
+#include "mod_canhealth.h"
 #include <signal.h>
 #include <atomic>
 
@@ -15,7 +15,7 @@
 std::array<void(*)(const int), 2> modules
 {
     mod_canifstate,
-    mod_canhealth_lsc
+    mod_canhealth
 };
 
 void ctrlcsignal(int);
