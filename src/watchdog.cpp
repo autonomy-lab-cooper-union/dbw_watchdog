@@ -5,14 +5,16 @@
 #include "watchdog.h"
 #include "core.h"
 #include "test_estop.h"
+#include "mod_canifstate.h"
 #include "mod_canhealth.h"
 #include <signal.h>
 #include <atomic>
 
 #define NAME_OF( v ) #v
 
-std::array<void(*)(const int), 1> modules
+std::array<void(*)(const int), 2> modules
 {
+    mod_canifstate,
     mod_canhealth
 };
 
