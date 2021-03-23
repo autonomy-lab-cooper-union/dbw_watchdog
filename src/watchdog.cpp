@@ -43,6 +43,14 @@ int main()
     //std::thread mod_sample_task (sample_task);
     for (int t = 0; t<modules.size(); t++) {
         threads.push_back(std::thread(modules.at(t), t));
+	for(;;)
+	{	
+       	 //checking for initializing threads
+	 if (1 == core::INIT_status[t].load()) {
+   		LOGMSG(watchdog, 0, "Thread: #%d INITIALIZED", t);
+		break;
+       	 }
+	}
     }
     //printf("the current driving mode is %d\n", core::current_mode.load());
     int buffer[modules.size()] = {0};
@@ -50,13 +58,6 @@ int main()
 
     for (;;)
     {
-        //checking for initializing threads
-        for(int i=0; i < modules.size(); ++i) {
-            if (1 == core::INIT_status[i].load()) {
-                LOGMSG(watchdog, 0, "Thread: #%d INITIALIZED", i);
-		core::INIT_status[i]++;
-            }
-        }
 
         if (sigcaught) { // use of many functions (like fprintf) is limited inside signal handlers, so do it here
             putchar('\n');
