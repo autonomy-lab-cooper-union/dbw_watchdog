@@ -11,6 +11,7 @@ void mod_canhealth(const int THIS_THREAD)
 {
     int canState;
     LOGMSG(mod_canhealth, 0, "Running");
+    core::INIT_status[THIS_THREAD] = 1;
     for (;;)
     {
         if (can_get_state("can0", &canState) < 0) {
