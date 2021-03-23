@@ -16,6 +16,7 @@ void mod_canifstate(const int THIS_THREAD)
     strncpy(ifr.ifr_name, "can0", IFNAMSIZ);
     ifr.ifr_flags = IFF_UP|IFF_RUNNING|IFF_NOARP;
     int fd = socket(AF_UNIX, SOCK_DGRAM, 0);
+    core::status[THIS_THREAD] = 1;
     LOGMSG(mod_canifstate, 0, "initialized; running");
     for (;;)
     {

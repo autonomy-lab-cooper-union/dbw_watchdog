@@ -23,6 +23,7 @@ namespace core
     //extern std::atomic<int> status;
     //extern std::atomic<std::array<int, NUM_THREADS>> status;
     extern std::array<std::atomic<std::int64_t>, NUM_THREADS> status;
+    extern std::array<std::atomic<std::int64_t>, NUM_THREADS> INIT_status;
 }
 
 #define COLOR_NORMAL "\e[m"

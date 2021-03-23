@@ -50,6 +50,15 @@ int main()
 
     for (;;)
     {
+        //checking for initializing threads
+        for(int i=0; i < modules.size(); ++i) {
+            // printf("buffer: thread %d, Buffer Value: %d, Status Value: %ld\n", i, buffer[i], core::status[i].load());
+            if (1 == core::INIT_status[i].load()) {
+                LOGMSG(INITIALIZING, 0, "Thread: #%d INITIALIZED", i);
+                core::estop();
+            }
+        }
+
         if (sigcaught) { // use of many functions (like fprintf) is limited inside signal handlers, so do it here
             putchar('\n');
             LOGMSG(watchdog, 1, "!!! Caught SIGINT, will exit on next occurence!");
