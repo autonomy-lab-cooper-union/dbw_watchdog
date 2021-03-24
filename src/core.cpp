@@ -8,6 +8,7 @@
 namespace core
 {
     std::array<std::atomic<std::int64_t>, NUM_THREADS> status;
+    std::array<std::atomic<std::int64_t>, NUM_THREADS> INIT_status;
     std::atomic_int current_mode (modes::FULL_DRIVE);
     void estop()
     {
